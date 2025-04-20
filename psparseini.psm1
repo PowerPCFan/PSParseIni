@@ -14,7 +14,7 @@ function ConvertFrom-IniFile {
         
         .NOTES
         Author: PowerPCFan
-        Version: 1.0.1
+        Version: 1.0.2
     #>
     
     param (
@@ -22,15 +22,15 @@ function ConvertFrom-IniFile {
         [string]$FilePath
     )
     
-    if (-not (Test-Path -Path $Path)) {
-        throw "File not found: $Path"
+    if (-not (Test-Path -Path $FilePath)) {
+        throw "File not found: $FilePath"
     }
     
     $ini = @{}
     $currentSection = 'NO_SECTION'
     $ini[$currentSection] = @{}
     
-    foreach ($line in Get-Content -Path $Path) {
+    foreach ($line in Get-Content -Path $FilePath) {
         $trimmedLine = $line.Trim()
         
         # Skip empty lines and comments
